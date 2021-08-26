@@ -1,5 +1,5 @@
 const mongoCluster = {
-    appDbUrl: ''
+    appDbUrl: 'mongodb connection string goes here'
 }
 
 module.exports = {
