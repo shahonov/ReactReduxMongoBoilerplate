@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import { usersReducer } from "./usersReducer";
+import { userReducer } from "./userReducer";
 import { applicationLoaderReducer } from './applicationLoaderReducer';
 import { notificationReducer } from './notificationReducer';
 
 export const createRootReducer = () => combineReducers({
-    users: usersReducer,
+    user: userReducer,
     applicationLoader: applicationLoaderReducer,
     notification: notificationReducer,
 })

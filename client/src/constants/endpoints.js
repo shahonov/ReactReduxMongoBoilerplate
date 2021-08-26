@@ -1,3 +1,6 @@
 export const endpoints = {
-    getUser: 'users',
+    users: {
+        signIn: 'users/sign-in',
+        signUp: 'users/sign-up'
+    }
 }

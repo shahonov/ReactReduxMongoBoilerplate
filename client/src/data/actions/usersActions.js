@@ -1,18 +1,32 @@
-import { usersService } from "services/usersService"
 import { notificationTypes } from "../constants";
-import { hideApplicationLoader, showApplicationLoader } from "./applicationLoaderActions";
+import { usersService } from "services/usersService"
 import { showNotification } from "./notificationActions";
+import { SIGN_IN_SUCCESS, SIGN_UP_USER } from "data/actionTypes";
+import { hideApplicationLoader, showApplicationLoader } from "./applicationLoaderActions";
 
-export const getUser = async (email, password) => async dispatch => {
+const signInSuccess = payload => ({ type: SIGN_IN_SUCCESS, payload });
+export const signIn = (email, password) => async dispatch => {
     try {
         dispatch(showApplicationLoader());
-        const result = await usersService.getUser(email, password);
-        console.log(result);
-        // TODO: dispatch expiration to state and persist
+        const result = await usersService.signIn(email, password);
+        dispatch(signInSuccess(result));
         dispatch(showNotification('successfully signed in', notificationTypes.success));
     } catch (err) {
-        console.warn('getUser:', err);
         dispatch(showNotification('could not sign in', notificationTypes.error));
+    } finally {
+        dispatch(hideApplicationLoader());
+    }
+}
+
+const signUpSuccess = payload => ({ type: SIGN_UP_USER, payload });
+export const signUp = (email, password) => async dispatch => {
+    try {
+        dispatch(showApplicationLoader());
+        const result = await usersService.signUp(email, password);
+        dispatch(signInSuccess(result));
+        dispatch(showNotification('account activation link has been sent to your email', notificationTypes.success));
+    } catch (err) {
+        dispatch(showNotification('could not sign up', notificationTypes.error));
     } finally {
         dispatch(hideApplicationLoader());
     }

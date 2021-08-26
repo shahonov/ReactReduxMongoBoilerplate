@@ -2,5 +2,6 @@ import { endpoints } from "constants/endpoints";
 import { httpService } from "./httpService";
 
 export const usersService = {
-    getUser: (email, password) => httpService.post(endpoints.getUser, { email, password })
+    signIn: (email, password) => httpService.post(endpoints.users.signIn, { email, password }),
+    signUp: (email, password) => httpService.post(endpoints.users.signUp, { email, password })
 }

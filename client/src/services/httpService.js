@@ -8,14 +8,35 @@ const buildUrl = endpoint => {
 
 const validateExpiration = async () => {
     const state = await store.getState();
-    console.log(state);
+    if (state.user.expiration < Date.now()) {
+        throw Error('session has expired');
+    }
+}
+
+const getHeaders = async () => {
+    const state = await store.getState();
+    const token = state.user.token;
+    if (token) {
+        return {
+            'Content-Type': 'application/json'
+        }
+    } else {
+        return {
+            'x-authrz': token,
+            'Content-Type': 'application/json'
+        };
+    }
 }
 
 export const httpService = {
     get: async (endpoint) => {
         await validateExpiration();
         const url = buildUrl(endpoint);
-        const response = await fetch(url);
+        const response = await fetch(url, {
+            headers: {
+
+            }
+        });
         const json = response.json();
         return json;
     },
@@ -24,9 +45,7 @@ export const httpService = {
         const url = buildUrl(endpoint);
         const response = await fetch(url, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: await getHeaders(),
             body: JSON.stringify(body)
         });
         const json = await response.json();
@@ -37,9 +56,7 @@ export const httpService = {
         const url = buildUrl(endpoint);
         const response = await fetch(url, {
             method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: await getHeaders(),
             body: JSON.stringify(body)
         });
         const json = await response.json();
@@ -50,9 +67,7 @@ export const httpService = {
         const url = buildUrl(endpoint);
         const response = await fetch(url, {
             method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: await getHeaders(),
             body: JSON.stringify(body)
         });
         const json = await response.json();
