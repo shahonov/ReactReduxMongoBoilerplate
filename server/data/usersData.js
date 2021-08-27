@@ -1,4 +1,4 @@
-const { getDb } = require("./db")
+const { getDb, ObjectID } = require("./db")
 
 const name = 'users';
 
@@ -31,7 +31,16 @@ const setUser = async (email, password) => {
     return result.insertedId;
 }
 
+const getUserById = async _id => {
+    const result = await getDb()
+        .collection(name)
+        .findOne({ _id: ObjectID(_id) });
+
+    return result;
+}
+
 module.exports = {
     getUser,
-    setUser
+    setUser,
+    getUserById
 }
