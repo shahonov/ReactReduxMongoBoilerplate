@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { store } from 'data/store';
 
 const baseUrl = 'http://localhost:5000/';

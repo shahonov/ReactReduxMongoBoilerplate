@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { endpoints } from "constants/endpoints";
 import { httpService } from "./httpService";
 
