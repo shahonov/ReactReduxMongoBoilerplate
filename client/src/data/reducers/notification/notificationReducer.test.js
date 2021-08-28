@@ -1,4 +1,4 @@
-import { notificationTypes } from 'constants/notificationTypes';
+import { notificationTypes } from 'constants/notificationTypes/notificationTypes';
 import { HIDE_NOTIFICATION, SHOW_NOTIFICATION } from 'data/actionTypes';
 import { notificationReducer } from './notificationReducer';
 
