@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { HIDE_APPLICATION_LOADER, SHOW_APPLICATION_LOADER } from "data/actionTypes"
 
 const triggerShow = () => ({

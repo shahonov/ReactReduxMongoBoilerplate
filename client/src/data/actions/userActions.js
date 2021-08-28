@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { notificationTypes } from "../constants";
 import { usersService } from "services/usersService"
 import { showNotification } from "./notificationActions";
@@ -23,7 +25,7 @@ export const signUp = (email, password) => async dispatch => {
     try {
         dispatch(showApplicationLoader());
         const result = await usersService.signUp(email, password);
-        dispatch(signInSuccess(result));
+        dispatch(signUpSuccess(result));
         dispatch(showNotification('account activation link has been sent to your email', notificationTypes.success));
     } catch (err) {
         dispatch(showNotification('could not sign up', notificationTypes.error));

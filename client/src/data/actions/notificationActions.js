@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { HIDE_NOTIFICATION, SHOW_NOTIFICATION } from "data/actionTypes"
 
 const triggerShow = (message, type) => ({
