@@ -8,7 +8,7 @@ import {
     showApplicationLoader,
     hideApplicationLoader,
 } from 'data/actions/applicationLoaderActions';
-import { getApplicationLoader } from 'data/reducers/applicationLoaderReducer';
+import { getApplicationLoader } from 'data/reducers/applicationLoader/applicationLoaderReducer';
 
 const loaderSize = 50;
 

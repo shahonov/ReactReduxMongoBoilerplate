@@ -1,1 +1,3 @@
-export {default} from './Notification';
+/* istanbul ignore file */
+
+export { default } from './Notification';

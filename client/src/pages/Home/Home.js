@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 const Home = () => {
     return (
         <div>Home</div>

@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { createBrowserHistory } from 'history';

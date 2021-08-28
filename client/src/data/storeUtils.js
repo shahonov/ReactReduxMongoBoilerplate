@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 export const throttle = (func, wait) => {
     let inThrottle = false;
     return () => {

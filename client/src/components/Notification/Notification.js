@@ -4,7 +4,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from "@material-ui/core/Snackbar";
 
 import { showNotification, hideNotification } from "data/actions/notificationActions"
-import { getNotification } from 'data/reducers/notificationReducer';
+import { getNotification } from 'data/reducers/notification/notificationReducer';
 
 const duration = 5000;
 
