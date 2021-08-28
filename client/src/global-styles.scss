@@ -1,0 +1,55 @@
+@import 'variables.scss';
+
+html, body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.unstyled-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.heading-lg {
+    font-size: 32px;
+}
+
+.heading-md {
+    font-size: 28px;
+}
+
+.heading-sm {
+    font-size: 24px;
+}
+
+.paragraph-sm {
+    font-size: 20px;
+}
+
+.paragraph-md {
+    font-size: 16px;
+}
+
+.paragraph-lg {
+    font-size: 12px;
+}
+
+.invalid-form-input {
+    color: $clr-error;
+    font-size: 12px;
+    
+    &.of-checkbox {
+        margin-top: -15px;
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+.MuiButton-containedPrimary, .MuiButton-containedSecondary {
+    color: black !important;
+    
+    &:hover {
+        color: white !important;
+    }
+}

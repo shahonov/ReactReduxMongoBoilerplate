@@ -33,7 +33,7 @@ const SignInForm = ({
                         />
                         {
                             errors.email && touched.email &&
-                            <ErrorMessage className='invalid-field-message' component='div' />
+                            <ErrorMessage className='invalid-form-input' component='div' />
                         }
                     </div>
                     <div className='form-input'>
@@ -48,7 +48,7 @@ const SignInForm = ({
                         />
                         {
                             errors.password && touched.password &&
-                            <ErrorMessage className='invalid-field-message' component='div' />
+                            <ErrorMessage className='invalid-form-input' component='div' />
                         }
                     </div>
                     <div>
