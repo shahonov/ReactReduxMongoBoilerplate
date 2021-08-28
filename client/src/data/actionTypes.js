@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 // application loader
 export const SHOW_APPLICATION_LOADER = 'SHOW_APPLICATION_LOADER';
 export const HIDE_APPLICATION_LOADER = 'HIDE_APPLICATION_LOADER';

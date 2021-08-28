@@ -1,4 +1,4 @@
-const { endpoints } = require("./endpoints");
+import { endpoints } from './endpoints';
 
 describe('endpoints', () => {
     it('should contain user sign in endpoint', () => {

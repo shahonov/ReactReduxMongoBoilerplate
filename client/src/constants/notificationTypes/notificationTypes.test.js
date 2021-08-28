@@ -1,4 +1,4 @@
-const { notificationTypes } = require("./notificationTypes");
+import { notificationTypes } from './notificationTypes';
 
 describe('notificationTypes', () => {
     it('should contain success type', () => {
