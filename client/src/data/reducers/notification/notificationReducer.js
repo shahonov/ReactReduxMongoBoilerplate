@@ -1,17 +1,17 @@
 import { HIDE_NOTIFICATION, SHOW_NOTIFICATION } from "data/actionTypes";
 
 const initialState = {
+    isOpen: false,
     message: '',
     type: '',
-    isOpen: false,
 }
 
 export const notificationReducer = (state = initialState, action) => {
     switch (action.type) {
         case SHOW_NOTIFICATION: return {
-            isOpen: true,
             message: action.payload.message,
             type: action.payload.type,
+            isOpen: true,
         }
         case HIDE_NOTIFICATION: return {
             isOpen: false,

@@ -2,9 +2,11 @@ import { Formik } from 'formik';
 
 import SignUpForm from './SignUpForm';
 
+import './SignUp.scss';
+
 const SignIn = () => {
     return (
-        <div className='sign-in-container'>
+        <div className='sign-up-container'>
             <Formik
                 enableReinitialize
                 initialValues={{

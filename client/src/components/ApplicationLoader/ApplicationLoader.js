@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import React from 'react';
 import { connect } from 'react-redux';
 
@@ -12,18 +14,16 @@ import { getApplicationLoader } from 'data/reducers/applicationLoader/applicatio
 
 const loaderSize = 50;
 
-const ApplicationLoader = ({
-    applicationLoader,
-}) => {
+const ApplicationLoader = ({ loader }) => {
     return (
-        <Backdrop style={{ zIndex: 9999 }} open={applicationLoader.isActive} >
+        <Backdrop style={{ zIndex: 9999 }} open={loader.isActive} >
             <CircularProgress size={loaderSize} disableShrink />
         </Backdrop>
     );
 };
 
 const mapStateToProps = state => ({
-    applicationLoader: getApplicationLoader(state),
+    loader: getApplicationLoader(state),
 });
 
 const mapDispatchToProps = {

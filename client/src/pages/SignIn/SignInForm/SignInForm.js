@@ -2,6 +2,7 @@ import {
     Card,
     Button,
     TextField,
+    Typography,
     CardActions,
     CardContent
 } from '@material-ui/core';
@@ -19,10 +20,12 @@ const SignInForm = ({
 }) => {
     return (
         <form>
-            <Card>
+            <Card className='sign-in-form-card'>
+                <Typography variant='h5' className='card-header'>Sign in</Typography>
                 <CardContent>
                     <div className='form-input'>
                         <TextField
+                            fullWidth
                             name='email'
                             label='Email'
                             margin='dense'
@@ -38,6 +41,7 @@ const SignInForm = ({
                     </div>
                     <div className='form-input'>
                         <TextField
+                            fullWidth
                             margin='dense'
                             name='password'
                             label='Password'
@@ -59,7 +63,7 @@ const SignInForm = ({
                 </CardContent>
                 <CardActions>
                     <Button
-                        size='small'
+                        fullWidth
                         color='primary'
                         variant='contained'
                         onClick={handleSubmit}

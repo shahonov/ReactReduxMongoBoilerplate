@@ -3,7 +3,8 @@ import {
     Button,
     TextField,
     CardActions,
-    CardContent
+    CardContent,
+    Typography
 } from '@material-ui/core';
 import { ErrorMessage } from 'formik';
 
@@ -19,10 +20,12 @@ const SignUpForm = ({
 }) => {
     return (
         <form>
-            <Card>
+            <Card className='sign-up-form-card'>
+                <Typography variant='h5' className='card-header'>Sign up</Typography>
                 <CardContent>
                     <div className='form-input'>
                         <TextField
+                            fullWidth
                             name='email'
                             label='Email'
                             margin='dense'
@@ -38,6 +41,7 @@ const SignUpForm = ({
                     </div>
                     <div className='form-input'>
                         <TextField
+                            fullWidth
                             margin='dense'
                             name='password'
                             label='Password'
@@ -53,6 +57,7 @@ const SignUpForm = ({
                     </div>
                     <div className='form-input'>
                         <TextField
+                            fullWidth
                             margin='dense'
                             variant='outlined'
                             onBlur={handleBlur}
@@ -74,7 +79,7 @@ const SignUpForm = ({
                 </CardContent>
                 <CardActions>
                     <Button
-                        size='small'
+                        fullWidth
                         color='primary'
                         variant='contained'
                         onClick={handleSubmit}
