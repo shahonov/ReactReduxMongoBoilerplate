@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const { initDb } = require('./data/db');
 const baseErrorHandler = require('./middlewares/baseErrorHandler');
@@ -18,7 +20,7 @@ app.get('/test', async (req, res) => {
         } else {
             resolve('Hi there!');
         }
-    })
+    });
 
     res.send(result);
 });

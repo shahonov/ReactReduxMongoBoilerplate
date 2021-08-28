@@ -1,5 +1,7 @@
+console.log(process.env.DB_CON_STR);
+
 const mongoCluster = {
-    appDbUrl: 'mongodb connection string goes here'
+    appDbUrl: process.env.DB_CON_STR
 }
 
 module.exports = {
