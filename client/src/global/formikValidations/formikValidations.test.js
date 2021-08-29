@@ -7,7 +7,9 @@ beforeEach(() => {
         test1: '12',
         test2: '',
         test3: 'test-input',
-        test4: 'test.email@mail.com'
+        test4: 'test.email@mail.com',
+        test5: 'asdAsd',
+        test6: 'qweQwe1'
     }
 })
 

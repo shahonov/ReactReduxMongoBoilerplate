@@ -8,6 +8,8 @@ import AppRouter from "AppRouter";
 
 import { history } from "data/store";
 
+import 'global-styles.scss';
+
 export const App = () => {
   return (
     <Router history={history}>

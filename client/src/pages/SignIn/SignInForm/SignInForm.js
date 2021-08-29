@@ -7,7 +7,6 @@ import {
     CardActions,
     CardContent
 } from '@material-ui/core';
-import { ErrorMessage } from 'formik';
 
 import './SignInForm.scss';
 
@@ -37,7 +36,7 @@ const SignInForm = ({
                         />
                         {
                             errors.email && touched.email &&
-                            <ErrorMessage className='invalid-form-input' component='div' />
+                            <div name='email' className='invalid-form-input'>{errors.email}</div>
                         }
                     </div>
                     <div className='form-input'>
@@ -54,7 +53,7 @@ const SignInForm = ({
                         />
                         {
                             errors.password && touched.password &&
-                            <ErrorMessage className='invalid-form-input' component='div' />
+                            <div name='password' className='invalid-form-input'>{errors.password}</div>
                         }
                     </div>
                     <div>

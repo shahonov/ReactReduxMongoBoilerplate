@@ -3,6 +3,11 @@ import { Formik } from 'formik';
 import SignUpForm from './SignUpForm';
 
 import './SignUp.scss';
+import {
+    validatePasswords,
+    validateEmailInputs,
+    validatePasswordsMatch
+} from 'global/formikValidations';
 
 const SignIn = () => {
     return (
@@ -16,7 +21,9 @@ const SignIn = () => {
                 }}
                 validate={values => {
                     return {
-
+                        ...validateEmailInputs(values, ['email']),
+                        ...validatePasswords(values, ['password', 'confirmPassword']),
+                        ...validatePasswordsMatch(values, ['password', 'confirmPassword'])
                     };
                 }}
                 onSubmit={values => {

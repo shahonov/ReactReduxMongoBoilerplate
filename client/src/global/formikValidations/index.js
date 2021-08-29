@@ -1,7 +1,9 @@
 /* istanbul ignore file */
 
 export {
+    validatePasswords,
     validateEmailInputs,
     validateNumberInputs,
-    validateNonEmptyInputs
+    validateNonEmptyInputs,
+    validatePasswordsMatch
 } from './formikValidations';

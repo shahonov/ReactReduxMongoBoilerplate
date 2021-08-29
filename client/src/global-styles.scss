@@ -35,7 +35,7 @@ html, body {
 
 .invalid-form-input {
     color: $clr-error;
-    font-size: 12px;
+    font-size: 14px;
     
     &.of-checkbox {
         margin-top: -15px;
@@ -44,12 +44,4 @@ html, body {
 
 .full-width {
     width: 100%;
-}
-
-.MuiButton-containedPrimary, .MuiButton-containedSecondary {
-    color: black !important;
-    
-    &:hover {
-        color: white !important;
-    }
 }
