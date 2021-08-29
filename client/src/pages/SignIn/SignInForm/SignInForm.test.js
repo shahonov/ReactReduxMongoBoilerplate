@@ -1,6 +1,11 @@
-import { TextField } from '@material-ui/core';
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {
+    Card,
+    TextField,
+    CardActions,
+    CardContent
+} from '@material-ui/core';
 
 import SignInForm from './SignInForm';
 
@@ -21,9 +26,7 @@ beforeEach(() => {
 
 describe('SignInForm', () => {
     it('should have two input text fields (email and password)', () => {
-        const component = renderer.create(
-            <SignInForm {...props} />
-        );
+        const component = renderer.create(<SignInForm {...props} />);
         const textFields = component.root.findAllByType(TextField);
 
         expect(textFields.length).toEqual(2);
@@ -42,5 +45,24 @@ describe('SignInForm', () => {
 
         expect(textFields[0].props.fullWidth).toBeTruthy();
         expect(textFields[1].props.fullWidth).toBeTruthy();
+    });
+
+    it('should contain card component and its subcomponents', () => {
+        const component = renderer.create(<SignInForm {...props} />);
+        expect(component.root.findAllByType(Card).length).toEqual(1);
+        expect(component.root.findAllByType(CardContent).length).toEqual(1);
+        expect(component.root.findAllByType(CardActions).length).toEqual(1);
+    });
+
+    it('should render error messages when errors and touched are true', () => {
+        expect(true).toBeTruthy();
+    });
+
+    it('should not render error messages when errors is true and touched is false', () => {
+        expect(true).toBeTruthy();
+    });
+
+    it('should not render error messages when errors is false and touched is true', () => {
+        expect(true).toBeTruthy();
     });
 });

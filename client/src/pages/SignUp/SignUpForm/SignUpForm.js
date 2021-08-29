@@ -66,7 +66,7 @@ const SignUpForm = ({
                             onBlur={handleBlur}
                             name='confirmPassword'
                             onChange={handleChange}
-                            label='Confirm Password'
+                            label='Confirm password'
                             value={values.confirmPassword}
                         />
                         {
