@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     Card,
     Button,
@@ -45,6 +46,7 @@ const SignInForm = ({
                             margin='dense'
                             name='password'
                             label='Password'
+                            type='password'
                             variant='outlined'
                             onBlur={handleBlur}
                             value={values.password}

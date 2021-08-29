@@ -6,11 +6,8 @@ import { connect } from 'react-redux';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import {
-    showApplicationLoader,
-    hideApplicationLoader,
-} from 'data/actions/applicationLoaderActions';
 import { getApplicationLoader } from 'data/reducers/applicationLoader/applicationLoaderReducer';
+import { showApplicationLoader, hideApplicationLoader } from 'data/actions/applicationLoaderActions';
 
 const loaderSize = 50;
 

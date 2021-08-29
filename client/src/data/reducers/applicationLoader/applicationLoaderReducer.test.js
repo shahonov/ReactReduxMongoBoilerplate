@@ -1,5 +1,5 @@
 import { HIDE_APPLICATION_LOADER, SHOW_APPLICATION_LOADER } from 'data/actionTypes';
-import { applicationLoaderReducer } from './applicationLoaderReducer';
+import { applicationLoaderReducer, getApplicationLoader } from './applicationLoaderReducer';
 
 let initialState = {};
 beforeEach(() => {
@@ -26,4 +26,14 @@ describe('applicationLoaderReducer', () => {
         const result = applicationLoaderReducer(initialState, action);
         expect(result).toEqual(initialState);
     });
+
+    it('should return applicationLoader field from state', () => {
+        const state = {
+            applicationLoader: {
+                testValue: 123
+            }
+        };
+        const applicationLoader = getApplicationLoader(state);
+        expect(applicationLoader.testValue).toEqual(123);
+    })
 });

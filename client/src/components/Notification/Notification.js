@@ -5,8 +5,8 @@ import { connect } from 'react-redux';
 import MuiAlert from '@material-ui/lab/Alert';
 import Snackbar from "@material-ui/core/Snackbar";
 
-import { showNotification, hideNotification } from "data/actions/notificationActions"
 import { getNotification } from 'data/reducers/notification/notificationReducer';
+import { showNotification, hideNotification } from "data/actions/notificationActions"
 
 const duration = 5000;
 

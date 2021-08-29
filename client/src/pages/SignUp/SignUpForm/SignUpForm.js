@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     Card,
     Button,
@@ -44,6 +45,7 @@ const SignUpForm = ({
                             fullWidth
                             margin='dense'
                             name='password'
+                            type='password'
                             label='Password'
                             variant='outlined'
                             onBlur={handleBlur}
@@ -59,6 +61,7 @@ const SignUpForm = ({
                         <TextField
                             fullWidth
                             margin='dense'
+                            type='password'
                             variant='outlined'
                             onBlur={handleBlur}
                             name='confirmPassword'

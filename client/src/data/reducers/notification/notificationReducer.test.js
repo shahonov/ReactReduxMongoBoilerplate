@@ -1,6 +1,6 @@
 import { notificationTypes } from 'constants/notificationTypes/notificationTypes';
 import { HIDE_NOTIFICATION, SHOW_NOTIFICATION } from 'data/actionTypes';
-import { notificationReducer } from './notificationReducer';
+import { getNotification, notificationReducer } from './notificationReducer';
 
 let initialState = {};
 beforeEach(() => {
@@ -43,4 +43,14 @@ describe('notificationReducer', () => {
         const result = notificationReducer(initialState, action);
         expect(result).toEqual(initialState);
     });
+
+    it('should return notification field from state', () => {
+        const state = {
+            notification: {
+                testValue: 'asd'
+            }
+        };
+        const notification = getNotification(state);
+        expect(notification.testValue).toEqual('asd');
+    })
 });
