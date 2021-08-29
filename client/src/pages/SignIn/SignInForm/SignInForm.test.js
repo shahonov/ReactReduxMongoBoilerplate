@@ -55,14 +55,32 @@ describe('SignInForm', () => {
     });
 
     it('should render error messages when errors and touched are true', () => {
-        expect(true).toBeTruthy();
+        props.errors = { email: true, password: true };
+        props.touched = { email: true, password: true };
+        const component = renderer.create(<SignInForm {...props} />);
+        const errorDivsCount = component.root.findAllByProps(
+            { className: 'invalid-form-input' }
+        ).length;
+        expect(errorDivsCount).toEqual(2);
     });
 
     it('should not render error messages when errors is true and touched is false', () => {
-        expect(true).toBeTruthy();
+        props.errors = { email: true, password: true };
+        props.touched = { email: false, password: false };
+        const component = renderer.create(<SignInForm {...props} />);
+        const errorDivsCount = component.root.findAllByProps(
+            { className: 'invalid-form-input' }
+        ).length;
+        expect(errorDivsCount).toEqual(0);
     });
 
     it('should not render error messages when errors is false and touched is true', () => {
-        expect(true).toBeTruthy();
+        props.errors = { email: false, password: false };
+        props.touched = { email: true, password: true };
+        const component = renderer.create(<SignInForm {...props} />);
+        const errorDivsCount = component.root.findAllByProps(
+            { className: 'invalid-form-input' }
+        ).length;
+        expect(errorDivsCount).toEqual(0);
     });
 });

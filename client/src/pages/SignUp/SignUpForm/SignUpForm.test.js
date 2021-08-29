@@ -4,7 +4,8 @@ import {
     Card,
     TextField,
     CardActions,
-    CardContent
+    CardContent,
+    Button
 } from '@material-ui/core';
 
 import SignUpForm from './SignUpForm';
@@ -60,14 +61,32 @@ describe('SignUpForm', () => {
     });
 
     it('should render error messages when errors and touched are true', () => {
-        expect(true).toBeTruthy();
+        props.errors = { email: true, password: true, confirmPassword: true };
+        props.touched = { email: true, password: true, confirmPassword: true };
+        const component = renderer.create(<SignUpForm {...props} />);
+        const errorDivsCount = component.root.findAllByProps(
+            { className: 'invalid-form-input' }
+        ).length;
+        expect(errorDivsCount).toEqual(3);
     });
 
     it('should not render error messages when errors is true and touched is false', () => {
-        expect(true).toBeTruthy();
+        props.errors = { email: false, password: false, confirmPassword: false };
+        props.touched = { email: true, password: true, confirmPassword: true };
+        const component = renderer.create(<SignUpForm {...props} />);
+        const errorDivsCount = component.root.findAllByProps(
+            { className: 'invalid-form-input' }
+        ).length;
+        expect(errorDivsCount).toEqual(0);
     });
 
     it('should not render error messages when errors is false and touched is true', () => {
-        expect(true).toBeTruthy();
+        props.errors = { email: true, password: true, confirmPassword: true };
+        props.touched = { email: false, password: false, confirmPassword: false };
+        const component = renderer.create(<SignUpForm {...props} />);
+        const errorDivsCount = component.root.findAllByProps(
+            { className: 'invalid-form-input' }
+        ).length;
+        expect(errorDivsCount).toEqual(0);
     });
 });

@@ -1,8 +1,12 @@
+import React from 'react';
 import { Formik } from 'formik';
 
 import SignInForm from './SignInForm';
 
-import { validateEmailInputs, validatePasswords } from 'global/formikValidations';
+import {
+    validatePasswords,
+    validateEmailInputs
+} from 'global/formikValidations';
 
 import './SignIn.scss';
 

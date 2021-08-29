@@ -1,13 +1,15 @@
+import React from 'react';
 import { Formik } from 'formik';
 
 import SignUpForm from './SignUpForm';
 
-import './SignUp.scss';
 import {
     validatePasswords,
     validateEmailInputs,
     validatePasswordsMatch
 } from 'global/formikValidations';
+
+import './SignUp.scss';
 
 const SignIn = () => {
     return (
