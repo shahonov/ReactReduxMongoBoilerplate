@@ -8,9 +8,9 @@ import Notification from "./components/Notification";
 import AppRouter from "AppRouter";
 
 import { history } from "data/store";
+import theme from "global/theme";
 
 import 'global-styles.scss';
-import theme from "global/theme";
 
 export const App = () => {
   return (
