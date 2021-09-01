@@ -1,4 +1,4 @@
-import { SIGN_IN_SUCCESS, SIGN_UP_SUCCESS } from 'data/actionTypes';
+import { SIGN_IN_SUCCESS } from 'data/actionTypes';
 import { userReducer } from './userReducer';
 
 let initialState = {};
@@ -9,12 +9,6 @@ beforeEach(() => {
 });
 
 describe('userReducer', () => {
-    it('should return actions payload when sign up success action type', () => {
-        const action = { type: SIGN_UP_SUCCESS, payload: { prop1: 'complete1' } };
-        const result = userReducer(initialState, action);
-        expect(result.prop1).toEqual('complete1');
-    });
-
     it('should return actions payload when sign in success action type', () => {
         const action = { type: SIGN_IN_SUCCESS, payload: { prop2: 'complete2' } };
         const result = userReducer(initialState, action);

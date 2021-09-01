@@ -7,5 +7,6 @@ const defaultLimit = rateLimit({
 });
 
 router.use('/users', defaultLimit, require('./controllers/usersController'));
+router.use('/crypto', defaultLimit, require('./controllers/cryptoController'));
 
 module.exports = router;

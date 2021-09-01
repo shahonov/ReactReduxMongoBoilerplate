@@ -1,4 +1,4 @@
-import { SIGN_IN_SUCCESS, SIGN_UP_SUCCESS } from "data/actionTypes";
+import { SIGN_IN_SUCCESS } from "data/actionTypes";
 
 const initialState = {
     expiration: (() => {
@@ -13,7 +13,6 @@ const initialState = {
 export const userReducer = (state = initialState, action) => {
     switch (action.type) {
         case SIGN_IN_SUCCESS: return action.payload;
-        case SIGN_UP_SUCCESS: return action.payload;
         default: return state;
     }
 }
