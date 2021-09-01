@@ -1,9 +1,9 @@
 /* istanbul ignore file */
 
-import { notificationTypes } from "../constants";
 import { usersService } from "services/usersService"
 import { showNotification } from "./notificationActions";
-import { SIGN_IN_SUCCESS, SIGN_UP_USER } from "data/actionTypes";
+import { notificationTypes } from "constants/notificationTypes";
+import { SIGN_IN_SUCCESS, SIGN_UP_SUCCESS } from "data/actionTypes";
 import { hideApplicationLoader, showApplicationLoader } from "./applicationLoaderActions";
 
 const signInSuccess = payload => ({ type: SIGN_IN_SUCCESS, payload });
@@ -20,7 +20,7 @@ export const signIn = (email, password) => async dispatch => {
     }
 }
 
-const signUpSuccess = payload => ({ type: SIGN_UP_USER, payload });
+const signUpSuccess = payload => ({ type: SIGN_UP_SUCCESS, payload });
 export const signUp = (email, password) => async dispatch => {
     try {
         dispatch(showApplicationLoader());
