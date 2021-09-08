@@ -39,8 +39,24 @@ const getUserById = async _id => {
     return result;
 }
 
+const activateUser = async userId => {
+    const result = await getDb()
+        .collection(name)
+        .updateOne(
+            { _id: ObjectID(userId) },
+            {
+                $set: {
+                    isActivated: true
+                }
+            }
+        )
+
+    return result.modifiedCount > 0;
+}
+
 module.exports = {
     getUser,
     setUser,
-    getUserById
+    getUserById,
+    activateUser
 }

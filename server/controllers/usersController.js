@@ -46,11 +46,29 @@ router.post('/sign-up', async (req, res, next) => {
         const password = rsa.decrypt(encryptedPassword, 'utf8');
 
         const result = await setUser(email, password);
-        // TODO: send account activation email
-        if (result) {
+        const emailResult = await emailService.sendEmail({
+            to: email,
+            subject: 'Account activation',
+            html: emailTemplates.accountActivation(result)
+        });
+        if (result && emailResult.accepted.includes(email)) {
             res.json({ isSuccess: true });
         } else {
             res.json({ isSuccess: false, message: 'could not create user' });
+        }
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.get('/activate/:userId', async (req, res, next) => {
+    try {
+        const { userId } = req.params;
+        const isActivated = await activateUser(userId);
+        if (isActivated) {
+            res.send('Account has been activated successfully!');
+        } else {
+            res.status(400).send('could not activate account');
         }
     } catch (err) {
         next(err);
