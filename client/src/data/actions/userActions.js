@@ -17,7 +17,6 @@ export const signIn = (email, password) => async dispatch => {
         const rsa = new NodeRSA(publicRSAKey);
         const encryptedPassword = rsa.encrypt(password, 'base64');
         const result = await usersService.signIn(email, encryptedPassword, encryptionId);
-        console.log(result);
         if (result.code === 400) {
             dispatch(showNotification('could not sign in', notificationTypes.error));
         } else {
