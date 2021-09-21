@@ -16,12 +16,11 @@ export const signIn = (email, password) => async dispatch => {
         const { publicRSAKey, encryptionId } = await cryptoService.getEncryptionInfo();
         const rsa = new NodeRSA(publicRSAKey);
         const encryptedPassword = rsa.encrypt(password, 'base64');
-        console.log(email, encryptedPassword, encryptionId);
         const result = await usersService.signIn(email, encryptedPassword, encryptionId);
         if (result.code === 400) {
             dispatch(showNotification('Could not sign in.', notificationTypes.error));
         } else {
-            dispatch(signInSuccess(result));
+            dispatch(signInSuccess(result.user));
             dispatch(showNotification('Successfully signed in.', notificationTypes.success));
         }
     } catch (err) {

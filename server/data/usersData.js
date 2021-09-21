@@ -36,7 +36,7 @@ const setUserTokenObj = async (userId, tokenObj) => {
         .collection(name)
         .updateOne(
             { _id: ObjectID(userId) },
-            { $set: tokenObj }
+            { $set: { tokenObj } }
         )
 
     return result.modifiedCount > 0;

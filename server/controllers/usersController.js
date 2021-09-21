@@ -25,10 +25,10 @@ router.post('/sign-in', async (req, res, next) => {
 
         const result = await getUser(email, decryptedPassword);
         if (result) {
-            const { password, ...rest } = result;
+            const { password, tokenObj, ...rest } = result;
             const token = uuid();
             const expiration = generateExpirationDate();
-            const setResult = setUserTokenObj({ token, expiration });
+            const setResult = setUserTokenObj(rest._id, { token, expiration });
             if (setResult) {
                 res.json({ isSuccess: true, user: { token, expiration, ...rest } });
             } else {
