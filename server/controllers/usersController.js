@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const NodeRSA = require('node-rsa');
+const { v4: uuid } = require('uuid');
 
-const { getUser, setUser } = require('../data/usersData');
+const { getUser, setUser, setUserTokenObj } = require('../data/usersData');
 const { readPrivateKey } = require('../inMemory/cryptoPairs');
 
 // session will expire one hour after sign in
@@ -23,9 +24,16 @@ router.post('/sign-in', async (req, res, next) => {
         const decryptedPassword = rsa.decrypt(encryptedPassword, 'utf8');
 
         const result = await getUser(email, decryptedPassword);
-        const { password, ...rest } = result;
-        if (rest) {
-            res.json({ isSuccess: true, user: { expiration: generateExpirationDate(), ...rest } });
+        if (result) {
+            const { password, ...rest } = result;
+            const token = uuid();
+            const expiration = generateExpirationDate();
+            const setResult = setUserTokenObj({ token, expiration });
+            if (setResult) {
+                res.json({ isSuccess: true, user: { token, expiration, ...rest } });
+            } else {
+                res.json({ isSuccess: false, message: 'could not set token object' });
+            }
         } else {
             res.json({ isSuccess: false, message: 'invalid credentials' });
         }
@@ -66,7 +74,7 @@ router.get('/activate/:userId', async (req, res, next) => {
         const { userId } = req.params;
         const isActivated = await activateUser(userId);
         if (isActivated) {
-            res.send('Account has been activated successfully!');
+            res.send('<h3 style="text-align: center; margin-top: 5vh;">Account has been activated successfully!</h3>');
         } else {
             res.status(400).send('could not activate account');
         }

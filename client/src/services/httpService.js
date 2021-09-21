@@ -1,5 +1,7 @@
 /* istanbul ignore file */
 
+import { endpoints } from 'constants/endpoints';
+import { SIGN_OUT_SUCCESS } from 'data/actionTypes';
 import { store } from 'data/store';
 
 const baseUrl = 'http://localhost:5000/';
@@ -8,10 +10,27 @@ const buildUrl = endpoint => {
     return `${baseUrl}${endpoint}`;
 }
 
+const shouldValidateGetExpiration = endpoint => {
+    return (
+        endpoint !== endpoints.users.signIn &&
+        endpoint !== endpoints.users.signOut &&
+        endpoint !== endpoints.crypto.publicRSAKey
+    );
+}
+
+const shouldValidatePostExpiration = endpoint => {
+    return (
+        endpoint !== endpoints.users.signIn &&
+        endpoint !== endpoints.users.signOut &&
+        endpoint !== endpoints.users.signUp
+    );
+}
+
 const validateExpiration = async () => {
     const state = await store.getState();
     if (state.user.expiration < Date.now()) {
-        throw Error('session has expired');
+        store.dispatch({ type: SIGN_OUT_SUCCESS });
+        throw Error('Сесията изтече.');
     }
 }
 
@@ -20,11 +39,11 @@ const getHeaders = async () => {
     const token = state.user.token;
     if (token) {
         return {
+            'x-auth': token,
             'Content-Type': 'application/json'
         }
     } else {
         return {
-            'x-authrz': token,
             'Content-Type': 'application/json'
         };
     }
@@ -32,18 +51,20 @@ const getHeaders = async () => {
 
 export const httpService = {
     get: async (endpoint) => {
-        await validateExpiration();
+        if (shouldValidateGetExpiration(endpoint)) {
+            await validateExpiration();
+        }
         const url = buildUrl(endpoint);
         const response = await fetch(url, {
-            headers: {
-
-            }
+            headers: await getHeaders()
         });
-        const json = response.json();
+        const json = await response.json();
         return json;
     },
     post: async (endpoint, body) => {
-        await validateExpiration();
+        if (shouldValidatePostExpiration(endpoint)) {
+            await validateExpiration();
+        }
         const url = buildUrl(endpoint);
         const response = await fetch(url, {
             method: 'POST',

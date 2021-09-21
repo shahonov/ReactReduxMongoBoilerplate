@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
+import { connect } from 'react-redux';
 
 import SignUpForm from './SignUpForm';
 
@@ -8,10 +9,11 @@ import {
     validateEmailInputs,
     validatePasswordsMatch
 } from 'global/formikValidations';
+import { signUp } from 'data/actions/userActions';
 
 import './SignUp.scss';
 
-const SignIn = () => {
+const SignIn = ({ signUp }) => {
     return (
         <div className='sign-up-container'>
             <Formik
@@ -28,9 +30,7 @@ const SignIn = () => {
                         ...validatePasswordsMatch(values, ['password', 'confirmPassword'])
                     };
                 }}
-                onSubmit={values => {
-                    console.log(values);
-                }}
+                onSubmit={values => signUp(values.email, values.password)}
             >
                 {props => <SignUpForm {...props} />}
             </Formik>
@@ -38,4 +38,6 @@ const SignIn = () => {
     );
 }
 
-export default SignIn;
+const mapDispatchToProps = { signUp };
+
+export default connect(null, mapDispatchToProps)(SignIn);

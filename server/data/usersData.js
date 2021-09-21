@@ -31,10 +31,21 @@ const setUser = async (email, password) => {
     return result.insertedId;
 }
 
-const getUserById = async _id => {
+const setUserTokenObj = async (userId, tokenObj) => {
     const result = await getDb()
         .collection(name)
-        .findOne({ _id: ObjectID(_id) });
+        .updateOne(
+            { _id: ObjectID(userId) },
+            { $set: tokenObj }
+        )
+
+    return result.modifiedCount > 0;
+}
+
+const getUserByToken = async token => {
+    const result = await getDb()
+        .collection(name)
+        .findOne({ token });
 
     return result;
 }
@@ -57,6 +68,7 @@ const activateUser = async userId => {
 module.exports = {
     getUser,
     setUser,
-    getUserById,
-    activateUser
+    activateUser,
+    getUserByToken,
+    setUserTokenObj,
 }

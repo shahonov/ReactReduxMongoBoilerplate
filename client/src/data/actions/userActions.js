@@ -2,7 +2,7 @@
 
 import NodeRSA from "node-rsa";
 
-import { SIGN_IN_SUCCESS } from "data/actionTypes";
+import { SIGN_IN_SUCCESS, SIGN_OUT_SUCCESS } from "data/actionTypes";
 import { usersService } from "services/usersService"
 import { cryptoService } from "services/cryptoService";
 import { showNotification } from "./notificationActions";
@@ -16,15 +16,17 @@ export const signIn = (email, password) => async dispatch => {
         const { publicRSAKey, encryptionId } = await cryptoService.getEncryptionInfo();
         const rsa = new NodeRSA(publicRSAKey);
         const encryptedPassword = rsa.encrypt(password, 'base64');
+        console.log(email, encryptedPassword, encryptionId);
         const result = await usersService.signIn(email, encryptedPassword, encryptionId);
         if (result.code === 400) {
-            dispatch(showNotification('could not sign in', notificationTypes.error));
+            dispatch(showNotification('Could not sign in.', notificationTypes.error));
         } else {
             dispatch(signInSuccess(result));
-            dispatch(showNotification('successfully signed in', notificationTypes.success));
+            dispatch(showNotification('Successfully signed in.', notificationTypes.success));
         }
     } catch (err) {
-        dispatch(showNotification('could not sign in', notificationTypes.error));
+        console.log(err);
+        dispatch(showNotification('Could not sign in.', notificationTypes.error));
     } finally {
         dispatch(hideApplicationLoader());
     }
@@ -38,12 +40,25 @@ export const signUp = (email, password) => async dispatch => {
         const encryptedPassword = rsa.encrypt(password, 'base64');
         const result = await usersService.signUp(email, encryptedPassword, encryptionId);
         if (result.isSuccess) {
-            dispatch(showNotification('Изпратихме активационен линк на имейла ти.', notificationTypes.success));
+            dispatch(showNotification('We have sent an activation link to your email.', notificationTypes.success));
         } else {
-            dispatch(showNotification('Неуспешна регистрация.', notificationTypes.error));
+            dispatch(showNotification('Could not sign up.', notificationTypes.error));
         }
     } catch (err) {
-        dispatch(showNotification('Неуспешна регистрация.', notificationTypes.error));
+        dispatch(showNotification('Could not sign up.', notificationTypes.error));
+    } finally {
+        dispatch(hideApplicationLoader());
+    }
+}
+
+const signOutSuccess = () => ({ type: SIGN_OUT_SUCCESS });
+export const signOut = () => async dispatch => {
+    try {
+        usersService.signOut();
+        dispatch(signOutSuccess());
+        dispatch(showNotification('Successfully signed out.', notificationTypes.success));
+    } catch (err) {
+        dispatch(showNotification('Could not sign out.', notificationTypes.error));
     } finally {
         dispatch(hideApplicationLoader());
     }
