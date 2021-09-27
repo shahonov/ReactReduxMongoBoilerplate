@@ -1,3 +1,5 @@
+const { getUserByToken } = require('../data/usersData');
+
 function authenticate(req, res, next) {
     const token = req.headers['x-auth'];
     if (token) {
@@ -5,11 +7,8 @@ function authenticate(req, res, next) {
         if (!user) {
             return res.status(401).send('You are not authorized to perform this action');
         }
-        if (roles.includes(user.role)) {
-            next();
-        } else {
-            return res.status(401).send('You are not authorized to perform this action');
-        }
+
+        next();
     } else {
         return res.status(401).send('You are not authorized to perform this action');
     }
